@@ -89,6 +89,13 @@ void ESPNowComponent::on_data_received(uint8_t *bssid, uint8_t *data, uint8_t le
 #elif defined(USE_ESP32)
 void ESPNowComponent::on_data_received(const uint8_t *bssid, const uint8_t *data, int len) {
 #endif
+
+   ESP_LOGD(
+     TAG, 
+     "packet: %02x %02x %02x %02x %02x %02x %02x %02x %02x",
+     data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8]
+   );
+  
   auto packet = make_unique<ESPNowPacket>(bssid, data, len);
   global_esp_now->receive_queue_.push(std::move(packet));
 }
