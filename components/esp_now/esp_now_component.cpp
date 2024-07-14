@@ -34,7 +34,6 @@ void ESPNowComponent::setup() {
 
 void ESPNowComponent::loop() {
   if (receive_queue_.empty()) {
-     ESP_LOGD(TAG, "Empty queue");
     return;
   }
   
